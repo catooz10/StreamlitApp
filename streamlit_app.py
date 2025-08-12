@@ -47,6 +47,7 @@ def add_mov_avg(df,var):
 
 nbi_links = pd.read_csv("https://raw.githubusercontent.com/griffisben/Post_Match_App/main/NBI_Match_Links.csv")
 lg_lookup = pd.read_csv("https://raw.githubusercontent.com/griffisben/Post_Match_App/main/PostMatchLeagues.csv")
+lg_lookup = lg_lookup[lg_lookup['League'].astype(str).str.contains('slovak', case=False, na=False)].copy()
 league_list = lg_lookup.League.unique().tolist()
 
 
@@ -59,7 +60,7 @@ league = lgg.replace("ü","u").replace("ó","o").replace("è","e").replace("ã",
     
 st.title(f"{lgg} {season} Post-Match Reports")
 st.subheader(f"Last Updated: {update_date}\n")
-st.subheader('All data via Opta created by Cato')
+st.subheader('Created by Cato')
 
 with st.expander('Disclaimer & Info'):
     st.write('''
@@ -68,6 +69,8 @@ with st.expander('Disclaimer & Info'):
 
 df = pd.read_csv(f"https://raw.githubusercontent.com/griffisben/Post_Match_App/main/League_Files/{league.replace(' ','%20')}%20Full%20Match%20List%20{season}.csv")
 df['Match_Name'] = df['Match'] + ' ' + df['Date']
+df = df[(df['Home'].str.contains("Košice", case=False, na=False)) |
+        (df['Away'].str.contains("Košice", case=False, na=False))].reset_index(drop=True)
 
 
 
