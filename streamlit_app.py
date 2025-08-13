@@ -69,10 +69,6 @@ with st.expander('Disclaimer & Info'):
 
 df = pd.read_csv(f"https://raw.githubusercontent.com/griffisben/Post_Match_App/main/League_Files/{league.replace(' ','%20')}%20Full%20Match%20List%20{season}.csv")
 df['Match_Name'] = df['Match'] + ' ' + df['Date']
-df = df[(df['Home'].str.contains("Košice", case=False, na=False)) |
-        (df['Away'].str.contains("Košice", case=False, na=False))].reset_index(drop=True)
-
-
 
 with st.sidebar:
     team_list = sorted(list(set(df.Home.unique().tolist() + df.Away.unique().tolist())))
