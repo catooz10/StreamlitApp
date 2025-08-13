@@ -515,8 +515,6 @@ with rank_tab:
 with full_ranks_tab:
     sort_var = st.selectbox('Metric to Sort By', rank_vars)
     league_data_rank_base = league_data.copy()
-    start_date = st.date_input("Start Date for Table", value=league_data.Date.min(), min_value=league_data.Date.min(), max_value=league_data.Date.max(), format="YYYY-MM-DD")
-    end_date = st.date_input("End Date for Table", value=league_data.Date.max(), min_value=league_data.Date.min(), max_value=league_data.Date.max(), format="YYYY-MM-DD")
 
     league_ranks = league_data_base.groupby(['Team'])[rank_vars].mean()
     
@@ -623,6 +621,8 @@ with scatter_tab:
     scatter_chart = (lg_chart_scatter + team_chart_scatter)
     
     st.altair_chart(scatter_chart, use_container_width=True)
+
+
 
 
 
