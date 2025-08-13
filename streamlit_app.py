@@ -64,7 +64,7 @@ st.subheader('Created by Cato')
 
 with st.expander('Disclaimer & Info'):
     st.write('''
-    - All of the data on this app comes from Opta. All images are created by Cato.   \n
+    - Except xG model, all data from Opta. xG is a mixed model. All images are created by Cato.   \n
     ''')
 
 df = pd.read_csv(f"https://raw.githubusercontent.com/griffisben/Post_Match_App/main/League_Files/{league.replace(' ','%20')}%20Full%20Match%20List%20{season}.csv")
@@ -234,7 +234,6 @@ with graph_tab:
     if plot_type == '📈 Line':
         lg_avg_var = league_data[var].mean()
         team_avg_var = team_data[var].mean()
-
         ###########
         fig_line, ax = plt.subplots(figsize=(12, 6))
         
